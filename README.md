@@ -5,7 +5,8 @@ Estimating Polygenic Score using SBayesRC paradigm
    available in Diagram Consortium [download page](https://diagram-consortium.org/downloads.html).
    Size of the zip file: 422 MG
    
-2. Here we use [SBayesRC package](https://github.com/zhilizheng/SBayesRC) to estimate PGS. To work with the package we need to:
+2. Here we use [SBayesRC package](https://github.com/zhilizheng/SBayesRC) to estimate PGS. 
+- To work with the package we need to:
   a. Download the package from github,
 ```bash
 git clone https://github.com/zhilizheng/SBayesRC
