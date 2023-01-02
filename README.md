@@ -8,21 +8,21 @@ Estimating Polygenic Score using SBayesRC paradigm
 2. Here we use [SBayesRC package](https://github.com/zhilizheng/SBayesRC) to estimate PGS. 
 - To work with the package we need to:
 
-    a. Download the package from github,
+  a. Download the package from github,
 ```bash
 git clone https://github.com/zhilizheng/SBayesRC
 ```
-    b. Unzip/Unpack the downloaded R package file,
+  b. Unzip/Unpack the downloaded R package file,
 ```bash
 tar -zxvf fileNameHere.tgz
 ```
-    c. Install the unzipped SBayesRC package,
+  c. Install the unzipped SBayesRC package,
 ```bash
 
 ```
-    d. Download the package dependencies [annotation file](https://drive.google.com/drive/folders/1cq364c50vMw1inJBTkeW7ynwyf2W6WIP) 300 MG from Google drive,
+  d. Download the package dependencies [annotation file](https://drive.google.com/drive/folders/1cq364c50vMw1inJBTkeW7ynwyf2W6WIP) 300 MG from Google drive,
   
-    e. Download the package dependencies [LD file](https://drive.google.com/drive/folders/1ZTYv_qlbb1EO70VVSSQFaEP9zH7c9KHt) from Google drive:
+  e. Download the package dependencies [LD file](https://drive.google.com/drive/folders/1ZTYv_qlbb1EO70VVSSQFaEP9zH7c9KHt) from Google drive:
 
 ```bash
 
