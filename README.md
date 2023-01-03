@@ -20,13 +20,12 @@ tar -zxvf fileNameHere.tgz
 ```bash
 
 ```
-  d. Download the package dependencies [annotation file](https://drive.google.com/drive/folders/1cq364c50vMw1inJBTkeW7ynwyf2W6WIP) 300 MG from Google drive,
-  
-  e. Download the package dependencies [LD file](https://drive.google.com/drive/folders/1ZTYv_qlbb1EO70VVSSQFaEP9zH7c9KHt) from Google drive:
 
 ```bash
 
-# Install gdown to be able to download the LD files directly from google drive
+# Download the large LD file from Google drive using the command line
+
+# 1st way/tool: Install gdown
 pip install gdown
 
 # The usage of gdown:
@@ -39,9 +38,33 @@ gdown [-h] [-V] [-O OUTPUT] [-q] [--fuzzy] [--id] [--proxy PROXY] [--speed SPEED
 # 1st LD file: ukb_EUR.zip -> 57.9 GB
 ~/.local/bin/gdown --id '10BXYrJ2NiaYbvfghajdgXa07bz2q6UxE'
 	   
-# 2nd LD file: ukb_EAS.zip -> 13.5 GB
-~/.local/bin/gdown --id '1CyF4hk0h1wnU6FKUg4ZVnkUHLOnQi-_q'
+
+# 2nd way/tool: Download gdrive library
+wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
+
+# Unzip the library
+tar -xvf gdrive_2.1.1_linux_386.tar
+
+# Creading a directory 
+mkdir ~/.local/bin/gdrive
+
+# Moving the file there
+mv gdrive ~/.local/bin/gdrive/
+
+# Turn into executable
+chmod a+x  ~/.local/bin/gdrive
+
+# Download the annotation file using gdrive 
+# Also need to ckeck the returned url 
+# and Insert the token shown in the link
+~/.local/bin/gdrive/gdrive download '1n0OtHurbbi-N-sXMUkQl8I0JLBUu8Na6' | pv -br
 
 ```
 
+  d. Download the package dependencies [annotation file](https://drive.google.com/drive/folders/1cq364c50vMw1inJBTkeW7ynwyf2W6WIP) 300 MG from Google drive,
+  
+  e. Download the package dependencies [LD file](https://drive.google.com/drive/folders/1ZTYv_qlbb1EO70VVSSQFaEP9zH7c9KHt) from Google drive:
 
+```bash
+gunzip ukb_EUR.zip
+```
