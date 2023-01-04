@@ -10,20 +10,17 @@ Estimating Polygenic Score using SBayesRC paradigm
 
   a. Download the package from github,
 ```bash
-git clone https://github.com/zhilizheng/SBayesRC
-```
-  b. Unzip/Unpack the downloaded R package file,
-```bash
-tar -zxvf fileNameHere.tgz
-```
-  c. Install the unzipped SBayesRC package,
-```bash
-
+ wget  https://github.com/zhilizheng/SBayesRC/releases/download/v0.1.4/SBayesRC_0.1.4.tar.gz
 ```
 
+  b. Install the SBayesRC package,
 ```bash
+realpath SBayesRC_0.1.4.tar.gz
+```
 
-# Download the large LD file from Google drive using the command line
+- To download the large LD file from Google drive using the command line we need to use a tool.
+
+```bash
 
 # 1st way/tool: Install gdown
 pip install gdown
@@ -63,8 +60,55 @@ chmod a+x  ~/.local/bin/gdrive
 
   d. Download the package dependencies [annotation file](https://drive.google.com/drive/folders/1cq364c50vMw1inJBTkeW7ynwyf2W6WIP) 300 MG from Google drive,
   
-  e. Download the package dependencies [LD file](https://drive.google.com/drive/folders/1ZTYv_qlbb1EO70VVSSQFaEP9zH7c9KHt) from Google drive:
+  e. Download the package dependencies [LD file](https://drive.google.com/drive/folders/1ZTYv_qlbb1EO70VVSSQFaEP9zH7c9KHt) from Google drive and extract the LD file:
 
 ```bash
 gunzip ukb_EUR.zip
 ```
+
+3. Preparation of Meta-GWAS results:
+
+- The GWAS summary data is the only essential input for SBayesRC in text format. We need to modify the columns header/order to turn them in the desired COJO format.
+
+```Rscript
+
+library(tidyverse)
+library(data.table)
+
+#Coordinates indicate GRCh37
+#desired meta-GWAS column names
+
+namesMeta  <- c(#New name  #Original name
+		"CHR",     #"chromosome(b37)",
+		"POS",     #"position(b37)",
+		"SNPid",   #"chrposID",
+		"SNP",     #"rsID",
+		"A1",      #"effect_allele",
+		"A2",      #"other_allele",
+		"P",       #"MR-MEGA_p-value_association",
+		"MR-MEGA_pHET_ancestry",
+		"MR-MEGA_pHET_residual",
+		"BETA",    #"Fixed-effects_beta",
+		"SE",      #"Fixed-effects_SE",
+		"Pvalue",  #"Fixed-effects_p-value",
+		"N")       #"Effective_sample_size"
+
+
+meta <- fread("~/projects/diabetes_PGS/data/DIAMANTE-TA.sumstat.txt",
+	      header = TRUE,
+	      col.names = namesMeta,
+	      stringsAsFactors = F,
+	      sep = ' ',
+	      fill = T,
+	      nrows = 1000)
+
+
+myMeta <-
+	meta %>%
+	mutate(across(c("A1", "A2"), toupper)) %>%
+	select(SNP, A1, A2, BETA, SE, P, N)
+
+
+
+```
+ 
