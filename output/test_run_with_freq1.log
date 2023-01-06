@@ -1,0 +1,68 @@
+Summary data: ~/projects/diabetes_PGS/data/myMeta_freq.txt
+LD path: ~/projects/diabetes_PGS/data/LD/ukb_EUR/
+Output: ~/projects/diabetes_PGS/output/test_run_with_freq1
+Freq_thresh: 0.2
+N_range: 3
+rate2pq: 0.5
+7356518 SNPs in LD information
+1000 SNPs in summary data
+1000 valid SNPs in summary data
+537 SNPs in common with LD information
+Consistent SNP IDs
+537 SNPs have consistent alleles (A1, A2) between the summary data and LD
+185 SNPs passed the allele frequency checking with threshold 0.2
+Mean N = 398314.968216216, SD = 47776.9517156088
+185 SNPs have sample size within mean +- 3SD
+After QC, Median sample size: 399169.13
+ Quantile of rate2pq:
+       0%       25%       50%       75%      100% 
+0.1315113 0.8862475 1.0000000 1.1474470 3.6446809 
+Var_y: 7.10998890640101
+160 SNPs remained after QC by rate2pq 0.5
+Done
+
+
+SessionInof() output: 
+
+R version 4.2.2 Patched (2022-11-10 r83330)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux bookworm/sid
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.21.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] SBayesRC_0.1.4    data.table_1.14.6 forcats_0.5.2     stringr_1.4.1    
+ [5] dplyr_1.0.10      purrr_0.3.5       readr_2.1.3       tidyr_1.2.1      
+ [9] tibble_3.1.8      ggplot2_3.3.6     tidyverse_1.3.2  
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9          pillar_1.8.1        compiler_4.2.2     
+ [4] cellranger_1.1.0    dbplyr_2.2.1        tools_4.2.2        
+ [7] timechange_0.1.1    lubridate_1.9.0     googledrive_2.0.0  
+[10] jsonlite_1.8.4      lifecycle_1.0.3     gargle_1.2.1       
+[13] gtable_0.3.1        pkgconfig_2.0.3     rlang_1.0.6        
+[16] reprex_2.0.2        DBI_1.1.3           cli_3.4.1          
+[19] haven_2.4.3         xml2_1.3.3          withr_2.5.0        
+[22] httr_1.4.4          generics_0.1.3      vctrs_0.4.2        
+[25] fs_1.5.2            hms_1.1.2           googlesheets4_1.0.1
+[28] grid_4.2.2          tidyselect_1.2.0    glue_1.6.2         
+[31] R6_2.5.1            fansi_1.0.3         readxl_1.4.1       
+[34] tzdb_0.3.0          modelr_0.1.9        magrittr_2.0.3     
+[37] backports_1.4.1     scales_1.2.1        ellipsis_0.3.2     
+[40] rvest_1.0.3         assertthat_0.2.1    colorspace_2.0-3   
+[43] utf8_1.2.2          stringi_1.7.8       munsell_0.5.0      
+[46] broom_1.0.1         crayon_1.5.2       
+------------------------------------------
+SBayesRC v0.1.4
+Developed by Zhili Zheng and Jian Zeng
+------------------------------------------
+Logging to ~/projects/diabetes_PGS/output/test_run_with_freq2.log
+Please look into log file, the console output will be empty

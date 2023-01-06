@@ -54,9 +54,9 @@ head(meta)
 # Having effect allele freq in meta-GWAS is essential for sbayesrc
 myMeta <-
 	meta %>%
-	mutate(across(c("A1", "A2"), toupper)) %>%
-	#mutate(freq = runif(0,1, n = nrow(meta))) %>%
-	select(SNP, A1, A2, b, se, p, N) #freq,
+	mutate(across(c("A1", "A2"), toupper),
+	       freq = runif(0,1, n = nrow(meta))) %>%
+	select(SNP, A1, A2, freq, b, se, p, N)
 	
 
 cat("\n\n myMeta looks like this: \n\n")
@@ -64,13 +64,12 @@ cat("\n\n myMeta looks like this: \n\n")
 head(myMeta)
 
 write.table(myMeta,
-	    "~/projects/diabetes_PGS/data/myMeta.txt",
+	    "~/projects/diabetes_PGS/data/myMeta_freq.txt",
 	    row.names = F,
 	    quote = F,
 	    sep = ' ')
 
 #-------------------
-
 library(SBayesRC)
 #-------------------
 
@@ -78,19 +77,22 @@ library(SBayesRC)
 #LD_PATH: the path to the downloaded and decompressed LD reference.
 #output_FILE: the output path.
 
-tidy("~/projects/diabetes_PGS/data/myMeta.txt",
+tidy("~/projects/diabetes_PGS/data/myMeta_freq.txt",
      "~/projects/diabetes_PGS/data/LD/ukb_EUR/",
-     "~/projects/diabetes_PGS/output/test_run")
+     "~/projects/diabetes_PGS/output/test_run_with_freq1")
 
+#-------------------
+cat("\n\nSessionInof() output: \n\n")
+sessionInfo()
 #-------------------
 
 # Run SBayesRC with annotation
 #SBayesRC::sbayesrc(mafile, LD_PATH, output_FILE, fileAnnot=ANNOT_FILE)
 #fileAnnot is the path to annotation file. Other parameters are same above.
 
-sbayesrc("~/projects/diabetes_PGS/data/myMeta.txt",
+sbayesrc("~/projects/diabetes_PGS/data/myMeta_freq.txt",
 	 "~/projects/diabetes_PGS/data/LD/ukb_EUR/",
-	 "~/projects/diabetes_PGS/output/test_run",
+	 "~/projects/diabetes_PGS/output/test_run_with_freq2",
 	 fileAnnot = "~/projects/diabetes_PGS/data/annot_baseline2.2.txt")
 
 #-------------------

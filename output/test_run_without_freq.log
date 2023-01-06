@@ -1,0 +1,10 @@
+Summary data: ~/projects/diabetes_PGS/data/myMeta.txt
+LD path: ~/projects/diabetes_PGS/data/LD/ukb_EUR/
+Output: ~/projects/diabetes_PGS/output/test_run
+Freq_thresh: 0.2
+N_range: 3
+rate2pq: 0.5
+7356518 SNPs in LD information
+Error in tidy("~/projects/diabetes_PGS/data/myMeta.txt", "~/projects/diabetes_PGS/data/LD/ukb_EUR/",  : 
+  The summary data is not a valid COJO format
+Execution halted

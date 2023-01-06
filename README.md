@@ -71,7 +71,6 @@ gunzip ukb_EUR.zip
 - The GWAS summary data is the only essential input for SBayesRC in text format. We need to modify the columns header/order to turn them in the desired COJO format.
 
 ```Rscript
-
 library(tidyverse)
 library(data.table)
 
@@ -85,11 +84,11 @@ namesMeta  <- c(#New name  #Original name
 		"SNP",     #"rsID",
 		"A1",      #"effect_allele",
 		"A2",      #"other_allele",
-		"P",       #"MR-MEGA_p-value_association",
+		"p",       #"MR-MEGA_p-value_association",
 		"MR-MEGA_pHET_ancestry",
 		"MR-MEGA_pHET_residual",
-		"BETA",    #"Fixed-effects_beta",
-		"SE",      #"Fixed-effects_SE",
+		"beta",    #"Fixed-effects_beta",
+		"se",      #"Fixed-effects_SE",
 		"Pvalue",  #"Fixed-effects_p-value",
 		"N")       #"Effective_sample_size"
 
@@ -103,12 +102,42 @@ meta <- fread("~/projects/diabetes_PGS/data/DIAMANTE-TA.sumstat.txt",
 	      nrows = 1000)
 
 
-myMeta <-
-	meta %>%
-	mutate(across(c("A1", "A2"), toupper)) %>%
-	select(SNP, A1, A2, BETA, SE, P, N)
-
-
-
+# Having effect allele freq in meta-GWAS is essential for sbayesrc
+meta %>%
+	mutate(across(c("A1", "A2"), toupper),
+	       freq = runif(0,1, n = nrow(meta))) %>%
+	select(SNP, A1, A2, freq, b, se, p, N) %>%
+	write.table("~/projects/diabetes_PGS/data/myMeta.txt",
+		    row.names = F,
+		    quote = F,
+		    sep = ' ')
 ```
- 
+
+4. Make the meta-GWAS tidy using built-in function in the package
+
+```R
+library(SBayesRC)
+
+#SBayesRC::tidy(mafile, LD_PATH, output_FILE)
+#LD_PATH: the path to the downloaded and decompressed LD reference.
+#output_FILE: the output path.
+
+tidy("~/projects/diabetes_PGS/data/myMeta.txt",
+     "~/projects/diabetes_PGS/data/LD/ukb_EUR/",
+     "~/projects/diabetes_PGS/output/test_run")
+```
+
+- That will save a test_run.log file. Package will use this file as the input for meta-GWAS in COJO format.
+
+5. Run the SBayesRC core function:
+
+```R
+# Run SBayesRC with annotation
+#SBayesRC::sbayesrc(mafile, LD_PATH, output_FILE, fileAnnot=ANNOT_FILE)
+#fileAnnot is the path to annotation file. Other parameters are same above.
+
+sbayesrc("~/projects/diabetes_PGS/data/myMeta.txt",
+	 "~/projects/diabetes_PGS/data/LD/ukb_EUR/",
+	 "~/projects/diabetes_PGS/output/test_run",
+	 fileAnnot = "~/projects/diabetes_PGS/data/annot_baseline2.2.txt")
+```

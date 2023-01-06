@@ -1,0 +1,21 @@
+------------------------------------------
+SBayesRC v0.1.4
+Developed by Zhili Zheng and Jian Zeng
+------------------------------------------
+Node: shell
+ With annotation: TRUE
+ Annotation file: ~/projects/diabetes_PGS/data/annot_baseline2.2.txt
+ Summary file: ~/projects/diabetes_PGS/data/myMeta_freq.txt
+ LD input: ~/projects/diabetes_PGS/data/LD/ukb_EUR/, var threshold: 0.995
+ Re-sample Ve: allMixVe
+ Start Pi: 0.99 0.005 0.003 0.001 0.001
+ Gamma for effects: 0 0.001 0.01 0.1 1
+ Number of iteration: 3000
+   Burn-in iteration: 1000
+ Start hsq: 0.5
+ Use 2pq: FALSE
+ Threshold to re-sample residual: 1.1
+------------------------------------------
+Error in sbayesrc("~/projects/diabetes_PGS/data/myMeta_freq.txt", "~/projects/diabetes_PGS/data/LD/ukb_EUR/",  : 
+  Some SNPs are missing in the GWAS summary statistics while existing in LD. Try "impute" function to impute.
+Execution halted
