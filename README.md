@@ -141,3 +141,9 @@ sbayesrc("~/projects/diabetes_PGS/data/myMeta.txt",
 	 "~/projects/diabetes_PGS/output/test_run",
 	 fileAnnot = "~/projects/diabetes_PGS/data/annot_baseline2.2.txt")
 ```
+
+- Now, we need to think how to compensate the lack of the effect allele frequency in multi-ancestry meta-GWAS.
+
+https://www.sciencedirect.com/science/article/pii/S2666979X2200204X
+
+Dariush | 09-Jan-23
